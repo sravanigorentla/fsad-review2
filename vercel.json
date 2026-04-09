@@ -1,0 +1,42 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "api/**/*.js",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "outputDirectory": "dist"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/auth",
+            "dest": "/api/auth.js"
+        },
+        {
+            "src": "/api/questions",
+            "dest": "/api/questions.js"
+        },
+        {
+            "src": "/api/results",
+            "dest": "/api/results.js"
+        },
+        {
+            "src": "/api/stats",
+            "dest": "/api/stats.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/index.html"
+        }
+    ],
+    "env": {
+        "MONGODB_URI": "@mongodb_uri",
+        "JWT_SECRET": "@jwt_secret"
+    }
+}
